@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "q": "Write a Python function that returns a list of FizzBuzz values from 1 to n.",
+    "test": "def fizzbuzz(n):\n    result = []\n    for i in range(1, n+1):\n        if i % 15 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(str(i))\n    return result\nassert fizzbuzz(5) == ['1','2','Fizz','4','Buzz']\nassert fizzbuzz(15)[-1] == 'FizzBuzz'\nassert fizzbuzz(1) == ['1']\nassert fizzbuzz(0) == []\nprint('PASS')"
+  },
+  {
+    "id": 2,
+    "q": "Write a Python function to count the frequency of each character in a string.",
+    "test": "def char_frequency(s):\n    freq = {}\n    for c in s:\n        freq[c] = freq.get(c, 0) + 1\n    return freq\nresult = char_frequency(\"hello\")\nassert result == {'h':1,'e':1,'l':2,'o':1}\nassert char_frequency(\"\") == {}\nprint('PASS')"
+  },
+  {
+    "id": 3,
+    "q": "Write a Python function to check if a string is a palindrome (ignoring case and spaces).",
+    "test": "def is_palindrome(s):\n    cleaned = s.replace(' ', '').lower()\n    return cleaned == cleaned[::-1]\nassert is_palindrome(\"racecar\")\nassert is_palindrome(\"A man a plan a canal Panama\")\nassert is_palindrome(\"\")\nassert not is_palindrome(\"hello\")\nassert not is_palindrome(\"world\")\nprint('PASS')"
+  },
+  {
+    "id": 4,
+    "q": "Write a Python function to reverse the words in a sentence.",
+    "test": "def reverse_words(s):\n    return ' '.join(s.split()[::-1])\nassert reverse_words(\"hello world\") == \"world hello\"\nassert reverse_words(\"the sky is blue\") == \"blue is sky the\"\nassert reverse_words(\"one\") == \"one\"\nassert reverse_words(\"\") == \"\"\nprint('PASS')"
+  },
+  {
+    "id": 5,
+    "q": "Write a Python function to check if a string has balanced parentheses.",
+    "test": "def is_balanced(s):\n    stack = []\n    mapping = {')': '(', '}': '{', ']': '['}\n    for ch in s:\n        if ch in '({[':\n            stack.append(ch)\n        elif ch in ')}]':\n            if not stack or stack[-1] != mapping[ch]:\n                return False\n            stack.pop()\n    return len(stack) == 0\nassert is_balanced(\"([]{})\")\nassert is_balanced(\"\")\nassert not is_balanced(\"([)]\")\nassert not is_balanced(\"(((\")\nprint('PASS')"
+  },
+  {
+    "id": 6,
+    "q": "Write a Python function to find the longest common prefix among a list of strings.",
+    "test": "def longest_common_prefix(strs):\n    if not strs:\n        return \"\"\n    prefix = strs[0]\n    for s in strs[1:]:\n        while not s.startswith(prefix):\n            prefix = prefix[:-1]\n        if not prefix:\n            return \"\"\n    return prefix\nassert longest_common_prefix([\"flower\",\"flow\",\"flight\"]) == \"fl\"\nassert longest_common_prefix([\"dog\",\"racecar\",\"car\"]) == \"\"\nassert longest_common_prefix([\"interview\",\"interact\",\"internal\"]) == \"inter\"\nassert longest_common_prefix([\"\"]) == \"\"\nprint('PASS')"
+  },
+  {
+    "id": 7,
+    "q": "Write a Python function to perform binary search on a sorted list and return the index.",
+    "test": "def binary_search(arr, target):\n    lo, hi = 0, len(arr) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1\nassert binary_search([1,3,5,7,9,11], 7) == 3\nassert binary_search([1,3,5,7,9,11], 1) == 0\nassert binary_search([1,3,5,7,9,11], 11) == 5\nassert binary_search([1,3,5,7,9,11], 4) == -1\nassert binary_search([], 1) == -1\nprint('PASS')"
+  },
+  {
+    "id": 8,
+    "q": "Write a Python function to find two numbers in a list that add up to a target and return their indices.",
+    "test": "def two_sum(nums, target):\n    seen = {}\n    for i, n in enumerate(nums):\n        diff = target - n\n        if diff in seen:\n            return [seen[diff], i]\n        seen[n] = i\n    return []\nassert two_sum([2, 7, 11, 15], 9) == [0, 1]\nassert two_sum([3, 2, 4], 6) == [1, 2]\nassert two_sum([3, 3], 6) == [0, 1]\nassert two_sum([1, 2, 3], 100) == []\nprint('PASS')"
+  },
+  {
+    "id": 9,
+    "q": "Write a Python function to find the majority element in a list (appears more than n/2 times).",
+    "test": "def majority_element(nums):\n    count = 0\n    candidate = None\n    for num in nums:\n        if count == 0:\n            candidate = num\n        count += 1 if num == candidate else -1\n    return candidate\nassert majority_element([3, 2, 3]) == 3\nassert majority_element([2, 2, 1, 1, 1, 2, 2]) == 2\nassert majority_element([1]) == 1\nassert majority_element([6, 6, 6, 3, 2]) == 6\nprint('PASS')"
+  },
+  {
+    "id": 10,
+    "q": "Write a Python function to rotate a list to the right by k positions.",
+    "test": "def rotate(nums, k):\n    n = len(nums)\n    if n == 0:\n        return nums\n    k = k % n\n    return nums[-k:] + nums[:-k] if k else nums[:]\nassert rotate([1,2,3,4,5], 2) == [4,5,1,2,3]\nassert rotate([1,2,3,4,5], 5) == [1,2,3,4,5]\nassert rotate([1,2,3,4,5], 7) == [4,5,1,2,3]\nassert rotate([], 3) == []\nassert rotate([1], 10) == [1]\nprint('PASS')"
+  }
+]
